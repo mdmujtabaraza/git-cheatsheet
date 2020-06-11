@@ -6,7 +6,8 @@ git config --global user.email EMAIL`
 `git config --global -e`
 
 
-##1) Config P4Merge as Default Merge Tool and Diff Tool
+
+## Config P4Merge as Default Merge Tool and Diff Tool
 
 In Windows Add P4Merge installation directory as path to environment variables
 

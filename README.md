@@ -66,8 +66,11 @@ Consider this 4th state:
 
 ### 5. Commit History
 `git log`  <!-- All commits that are part of this repository -->\
-`git show`  <!-- Shows the last commit and diff containing all the changes -->\
 `git log --oneline --graph --decorate --all`
+
+`git show`  <!-- Shows the last commit and diff containing all the changes -->\
+`git show COMMIT_ID`\
+`git show TAG_NAME`
 
 
 ### 6. Express Commit
@@ -76,7 +79,7 @@ Consider this 4th state:
 
 ### 7. Backing out / Restoring Changes
 `git restore .`\
-`git restore FILE_NAME/FOLDER_NAME`\
+`git restore FILE_NAME/FOLDER_NAME`
 
 `git restore --staged .`\
 `git restore --staged FILE_NAME/FOLDER_NAME`
@@ -130,15 +133,132 @@ Consider this 4th state:
 
 
 ### 11. Branching
-`git branch`
+`git branch`  <!-- Shows the current branch -->\
+`git branch -a`  <!-- List all branches -->
 
-`git branch BRANCH_NAME`\
-`git checkout -b BRANCH_NAME`
+`git branch BRANCH_NAME`<!-- Create a branch -->\
+`git checkout -b BRANCH_NAME`  <!-- Creates and branch and switch to it -->
 
-`git checkout BRANCH_NAME`
+`git checkout BRANCH_NAME`  <!-- Switch branch to BRANCH_NAME -->
 
-`git branch -d BRANCH_NAME`
+`git branch -d BRANCH_NAME`  <!-- Delete the BRANCH_NAME branch -->
 
 
-### 12. Merge
-`git merge BRANCH_NAME`
+### 12. Merging
+`git merge BRANCH_NAME`  <!-- Merge BRANCH_NAME branch into current branch -->
+
+`git mergetool`  <!-- Resolving any conflicts -->
+
+
+### 13. Tags
+`git tag TAG_NAME`  <!-- create a tag -->
+
+`git tag --list`  <!-- lists all tags -->
+
+`git tag -d TAG_NAME`  <!-- Deletes the tag -->
+
+`git tag -a ANNOTATED_TAG_NAME -m "TAG_MESSAGE"`  <!-- create an annotated tag -->\
+`git show ANNOTATED_TAG_NAME`
+
+
+### 14. Stashing (Saving Work in Progress)
+`git stash`  <!-- saves temporary changes in WiP list -->
+
+`git stash list`  <!-- List all WiP -->
+
+`git stash pop`  <!-- Two actions at once apply, drop -->\
+`git stash apply`  <!-- Apply whatever last stash was in list -->
+`git stash drop`  <!-- Drops the stash -->
+
+
+### 15. Reset and Reflog (Time Travel)
+`git hist`
+
+`git reset COMMIT_ID --soft`  <!-- All unstaged and staged files remain as it is-->\
+`git reset COMMIT_ID --mixed`  <!-- All staged files will be unstaged -->\
+`git reset COMMIT_ID --hard`  <!-- All unstaged and staged files will be deleted -->
+
+`git reflog`  <!-- All different actions taken in the repo -->
+
+
+## Working with GitHub
+
+#### 16. Cloning a Repository
+`git clone REPO_URL`  <!-- REPO_URL can be ssh or https-->\
+`git clone REPO_URL FOLDER_NAME`  <!-- Clone in the folder specified -->
+
+
+#### 17. List all remotes
+`git remote -v`
+
+
+#### 18. Pushing on Remote
+`git push REMOTE_NAME BRANCH_NAME`  <!-- ex: `git push origin master` -->
+
+
+#### 19. Fetch and Pull
+`git fetch`  <!-- Fetch changes from remote repo -->\
+`git status`
+
+`git pull`  <!-- It performs 2 actions fetch, merge -->
+
+
+#### 20. Set a new remote url
+`git remote -v`\
+`git remote set-url REMOTE_NAME REMOTE_URL`  <!-- ex: `git remote set-url origin url.git`-->\
+`git remote show REMOTE_NAME`
+
+
+#### 21. Push Local Branch
+`git push -u REMOTE_NAME BRANCH_NAME`  <!-- u sets tracking relationship -->
+
+
+#### 22. Compare and Pull Request Locally
+`git status`
+`git checkout DEFAULT_BRANCH`\
+`git pull`\
+`git merge BRANCH_NAME`\
+`git push`\
+`git branch -a`
+`git branch -d BRANCH_NAME`\
+`git branch -a`  <!-- Stale reference of deleted branch -->
+`git fetch -p`  <!-- Prune option -->
+
+
+#### 23. Locally switch to a branch on GitHub
+`git branch -a`
+`git fetch`\
+`git branch -a`
+`git checkout REMOTE_BRANCH_NAME`\
+`git branch -a`
+`git push`
+
+
+#### 24. Deleting Branch References
+`git status`
+`git checkout DEFAULT_BRANCH`\
+`git pull --all`\
+`git merge BRANCH_NAME`\
+`git push`\
+`git branch -a`
+`git branch -d BRANCH_NAME`\
+`git branch -a`  <!-- Stale reference of deleted branch -->
+`git push REMOTE_NAME :BRANCH_NAME`
+
+
+#### 25. Pull with Rebase
+* Some Commits on remote repo
+* Some Commits on local repo
+* Both diverged after fetch
+* Do a rebase pull to stay ahead of remote
+
+`git fetch`
+`git status`  <!-- -->\
+`git pull --rebase`
+`git hist`
+
+
+#### 26. Changing the Default Branch
+* Change default branch from website
+* Clone a new repository locally
+`git branch -a`
